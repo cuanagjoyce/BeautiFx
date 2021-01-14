@@ -1,0 +1,23 @@
+.slide {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  margin-left: 100px;
+}
+.ss-container {
+  width: 80%;
+  height: 50%;
+  margin-left: 80px;
+}
+
+.bounce {
+-webkit-animation-name: bounce;
+animation-name: bounce;
+ -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+}
+#wrapperCenter {
+	width: 100px;
+	height: 100px;
+}

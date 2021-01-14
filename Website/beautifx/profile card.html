@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developer</title>
+  <script src="float-panel.js"></script>
+  <script src="shy.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/stayl.css" type="text/css">
+  <link rel="stylesheet" href="css/profile.css" type="text/css">
+  <link rel="stylesheet" href="css/sladsowstyle.css" type="text/css">
+  <link rel="stylesheet" href="css/beautifx.css" type="text/css">
+  <link rel="stylesheet" href="css/lato.css">
+  <link rel="stylesheet" href="css/4.6.3 font-awesome.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+  <link rel="stylesheet" href="css/4.2.0 font-awesome.min.css">
+  <link rel="stylesheet" href="css/lib/w3.css">
+  <script src="float-panel.js"></script>
+<script src="jjquery.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+</head>
+<body>
+  <div id="backtop">&#9650;</div>
+
+<!--navbar-->
+
+  <nav>
+  		 <div class="float-panel" data-top="0" data-scroll="500">
+  				 <div style="text-align:right;max-width:1360px;margin:0 auto;">
+  					<a href="beautifx.html" style="float:left;margin-left:20px;">
+  					<b style="font-size:20px "Lato", sans-serif;letter-spacing:2px;">BeautiFx</b>
+  						 </a>
+               <a href="beautifx.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  						 <div class="dd">
+                <a class="drop">Skin Type</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="dc">
+                      <a href="normal.html">Normal</a>
+                      <a href="dry.html">Dry</a>
+                      <a href="oily.html">Oily</a>
+                      <a href="sensitive.html">Sensitive</a>
+                      <a href="combination.html">Combination</a>
+                </div>
+              </div>
+              <div class="dd">
+                <a class="drop">Skin Care</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="dc">
+                      <a href="cleanser.html">Cleanser</a>
+                      <a href="toner.html">Toner</a>
+                      <a href="moisturizer.html">Moisturizer</a>
+                      <a href="serum.html">Serum</a>
+                      <a href="combination.html">Exfoliate</a>
+  						 </div>
+  					 </div>
+  						 <a href="aboutus.html"> About Us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+  		 </div>
+   </nav>
+<br>
+<br>
+<h2>Click below to know more about our developer!</h2>
+
+<div class="links">
+<div class="sirkol">
+<a href="#joyce"><img src="s2.png" class="circle" style="width:200px;height:200px;"><br>
+Joyce Cuanag</a>
+</div>
+</div>
+</div>
+
+<br>
+<div id="joyce">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="card">
+  <img src="joyce.jpg" style="width:100%" height="50%">
+  <div class="container">
+    <h1>Joyce Cuanag</h1>
+    <p class="title">Web Developer</p>
+  </div>
+</div>

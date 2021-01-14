@@ -1,0 +1,192 @@
+<html>
+
+<head>
+<title>About Us</title>
+<link rel="stylesheet" href="css/aboutus.css" type="text/css">
+<link rel="stylesheet" href="css/beautifx.css" type="text/css">
+<link rel="stylesheet" href="css/lato.css" type="text/css">
+<link rel="stylesheet" href="css/4.6.3 font-awesome.min.css">
+<link rel="stylesheet" href="css/footer-distributed-with-address-and-phones.css">
+<link rel="stylesheet" href="css/4.2.0 font-awesome.min.css">
+<script src="float-panel.js"></script>
+<script src="shy.js"></script>
+</head>
+<body>
+<div id="backtop">&#9650;</div>
+
+<!--navigation bar-->
+<nav>
+		 <div class="float-panel" data-top="0" data-scroll="500">
+				 <div style="text-align:right;max-width:1360px;margin:0 auto;">
+						 <a href="beautifx.html" style="float:left;margin-left:20px;">
+						<b style="font-size:20px "Lato", sans-serif;letter-spacing:2px;">BeautiFx</b>
+						 </a>
+						 <a href="beautifx.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 <div class="dd">
+              <a class="drop">Skin Type</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="dc">
+                    <a href="normal.html">Normal</a>
+                    <a href="dry.html">Dry</a>
+                    <a href="oily.html">Oily</a>
+                    <a href="sensitive.html">Sensitive</a>
+                    <a href="combination.html">Combination</a>
+              </div>
+            </div>
+            <div class="dd">
+              <a class="drop">Skin Care</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="dc">
+                    <a href="cleanser.html">Cleanser</a>
+                    <a href="toner.html">Toner</a>
+                    <a href="moisturizer.html">Moisturizer</a>
+                    <a href="serum.html">Serum</a>
+                    <a href="combination.html">Exfoliate</a>
+                   
+						 </div>
+					 </div>
+						 <a href="aboutus.html"> About Us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						
+
+ </div>
+ </nav>
+<div class="texta">
+
+<h1>Welcome to  BeautiFx!</h1>
+<h3>BeautiFx is your ultimate creative professional skincare provider and pioneer in skincare works. We specialize in advising your skincare at our finest knowledge.</h3>
+</div>
+<br>
+<br>
+<footer class="footer-distributed">
+	<div class="footer-left">
+	  <h3>BeautiFx</h3>
+  
+	  <p class="footer-links">
+		<a href="privacy.html">Privacy Policy</a>
+	  </p>
+  
+	  <p class="footer-company-name">&copy; BeautiFx.co &#8226; </p>
+	  <br>
+	 
+	<center>
+	</center>
+			  </div>
+			</div>
+			</form>
+	</div>
+  
+<div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>Konoha Street, Anime Land </span> Uchiha,Itachi 1129</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+102911745630</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:support@company.com">beautiFx@ani.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span></i> Beautifx Company</span>
+      BeautiFx is your ultimate creative professional skincare provider and pioneer in skincare works.  We specialize in advising your skincare at our finest knowledge.
+    </p>
+
+  </div>
+</footer>
+
+
+
+
+
+<script>
+
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+
+
+
+
+
+
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("slide");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 4000);
+}
+</script>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+
+<script>
+// Get the modal
+var modalya = document.getElementById('myModalya');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myMap');
+var modalyaImg = document.getElementById("img12");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modalya.style.display = "block";
+    modalyaImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// close the modal
+span.onclick = function() {
+    modalya.style.display = "none";
+}
+</script>
+
+
+
+
+
+</body>
+</html>

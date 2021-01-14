@@ -1,0 +1,38 @@
+body,h1,p {font-family: "Lato", sans-serif;}
+
+h1 {
+	font-family: Sans-serif;
+	text-align:center;
+	letter-spacing:2px;
+	padding-top:20px;
+}
+p {
+	text-align: center;
+	float: left;
+	
+}
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+	margin:8px;
+	padding:5px;
+	float: left;
+	display: inline-block;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+#jaja {
+	margin:10px;
+	padding:10px;
+	margin-left:120px;
+}
+
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}

@@ -1,0 +1,267 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #000;
+    line-height: 1.8;
+	  text-align: center;
+    font-size: 15px;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    opacity: 0.7;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.young {
+	width: 100%
+	}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('aya.jpg');
+    min-height: 100%;
+	display:middle;
+	padding:100px 100px 100px 80px;
+	padding-top:210px;
+	white-space:no-wrap;
+}
+
+.bgimg-1 span {
+	font-size:80px;
+	letter-spacing: -5px;
+	text-align:center;
+	font-family: "Lato", sans-serif;
+}
+button.shopnow {
+  background-color: transparent;
+  border: solid black 2px;
+  color: black;
+  font-weight: bold;
+  width: 150px;
+  text-decoration: none;
+}
+button.shopnow:hover {
+  background-color: black;
+  border: solid black 2px;
+  color: white;
+  font-weight: normal;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+
+button.contactus {
+    background-color: transparent;
+    border: solid black 2px;
+    color: black;
+    font-weight: bold;
+    width: 150px;
+    text-decoration: none;
+  }
+  button.contactus:hover {
+    background-color: black;
+    border: solid black 2px;
+    color: white;
+    font-weight: normal;
+    text-decoration: none;
+}
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("yaya.jpg");
+    min-height: 400px;
+}
+.bgimg-2 span {
+	font-size:50px;
+	text-align:center;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("tt.jpg");
+    min-height: 400px;
+}
+.bgimg-3 span {
+	font-size:50px;
+	text-align:center;
+}
+.slide {
+	display: inline;
+}
+
+
+#backtop {
+	        position: fixed;
+            left:auto;right: 20px;top:auto;bottom: 20px;
+	        outline: none;
+            overflow:hidden;
+            color:#fff;
+            text-align:center;
+            background-color: #000;
+            height:40px;
+            width:40px;
+            line-height:40px;
+            font-size:14px;
+            border-radius:2px;
+            cursor:pointer;
+            transition:all 0.3s linear;
+            z-index:999999;
+
+            opacity:1;
+            display:none;
+        }
+        #backtop:hover {
+            background-color: gray;
+        }
+        #backtop.mcOut {
+            opacity:0;
+        }
+#chuchu {
+	padding-bottom:100px;
+	padding-top:35px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+#linky {
+	display: inline-block;
+	}
+#linky a:link {
+  color: black;
+  text-decoration: none;
+	border: 2px solid #000;
+	margin: 5px 5px 5px 5px;
+	padding: 15px 20px 15px 20px;
+}
+#linky a:hover {
+    color: white;
+    background-color: black;
+    text-decoration: none;
+	 border: 2px solid #000;
+	 margin: 5px 5px 5px 5px;
+	 padding: 15px 20px 15px 20px;
+}
+#wrap	{
+		width: 100%;
+		height: 50px;
+		margin: 0;
+		z-index: 99;
+		position: relative;
+		background-color: #gray;
+		}
+#about {
+  font-size: 20px;
+}
+.float-panel {
+    width:100%;
+    background: white;
+    z-index:300;
+    padding:20px 0;
+    transform: translateZ(0);
+    transition:all 0.5s; /* Effect for switching from .fixed to static */
+}
+.float-panel .content-area {
+  margin:5px auto;
+}
+
+a {
+	display: inline-block;
+	position: relative;
+	padding-bottom: 3px;
+  margin: 25px;
+}
+a:after {
+	content: '';
+	display: block;
+	margin: auto;
+	height: 3px;
+	width: 0px;
+	background: transparent;
+	transition: width .5s ease, background-color .5s ease;
+}
+a:hover:after {
+	width: 100%;
+	background: black;
+}
+
+
+/*.float-panel a {
+	font-size:16px;
+	text-decoration:none;
+	color:#444;
+	display:inline-block;
+	padding:5px 20px;
+	transition: all .2s ease-in-out;
+	}
+.float-panel a:hover {
+	transform: scale(1.1);
+}*/
+
+
+
+/* when class="float-panel fixed" */
+.fixed {
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  padding:4px 0;
+  animation:slide-down 0.7s;opacity:0.9;
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+}
+
+	#footer1 {
+	background-color: #000;
+	color: #FFF;
+	padding:33px 25px 25px 50px;
+	float:left;
+}
+#footer1 a {
+	text-decoration:none;
+	color: #FFF;
+}
+#footer1 a:hover {
+	text-decoration:underline;
+}
+#footer2 {
+	background-color: #000;
+	color: #FFF;
+	padding:50px;
+}
+
+#footer button:hover {
+	border: 1px solid black;
+}
+.footer {
+  margin: 0px;
+}
+
+
+
+
+
+.w3-wide {letter-spacing: 20px;}
+.w3-hover-opacity {cursor: pointer;}
+
+.w3-content w3-container w3-padding-64 {
+	text-align: center;
+  font-size: 20px;
+	}
+
+
+
+/* Turn off parallax scrolling for tablets and mobiles */
+@media only screen and (max-width: 1024px) {
+.bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}

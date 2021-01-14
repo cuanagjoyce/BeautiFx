@@ -1,0 +1,52 @@
+.popo {
+	width:100px;
+    background-color: #FFF;
+    color: #000;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+	text-decoration: none;
+	border: 2px solid black;
+	margin: 5px 5px 5px 5px;
+	padding: 15px 20px 15px 20px;
+}
+
+.popo:hover {
+    color: #FFF;
+    background-color: #000;
+    text-decoration: none;
+	border: 2px solid #000;
+	margin: 5px 5px 5px 5px;
+	padding: 15px 20px 15px 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+	border: none;
+    display: none;
+    position: absolute;
+    background-color: #FFF;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #FFF;
+	color: #000;
+}
