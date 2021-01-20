@@ -1,90 +1,99 @@
 import 'package:beautifx/home.dart';
 import 'package:flutter/material.dart';
 
-
 void main() {
-  runApp(MyApp());
+  runApp(new MaterialApp(
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Start()
-    );
-  }
-}
-
-class Start extends StatelessWidget{
-
-@override
-  Widget build(BuildContext context){
     return Scaffold(
-      body: Stack(
-        children: [
+        body: SafeArea(
+      child: Stack(
+        children: <Widget>[
           Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/image/start.png"),
-                fit: BoxFit.fill)),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/start.png'),
+              ),
+            ),
           ),
           Container(
+            margin: EdgeInsets.only(top: 15, left: 15),
             child: Text(
               'BeautiFx',
               textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 36.0,
-              fontFamily: 'Raleway',
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-              shadows: <Shadow>[
-              Shadow(
-                offset: Offset(1.0, 3.0),
-                blurRadius: 2.0,
-                color: Color.fromARGB(150, 0, 0, 0),
-              ),]
-              ),
-              ),
-              padding: EdgeInsets.only(bottom:500.0,right:25.0, left: 10.0, top: 35.0),
-            ),
-          Container(
-            child: Text(
-              'Refuse to wither \nYou can always\ngrow and bloom',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(fontSize: 38.0,
-              fontFamily: 'Raleway',
-              fontWeight: FontWeight.w900,
-              color: Colors.black
-              ),
-              ),
-              padding: EdgeInsets.only(top:500.0,right:25.0, left: 15.0),
-          ),
-          Container(
-            margin: EdgeInsets.all(12.0),
-            child: RaisedButton(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            onPressed: () {
-                  Navigator.push(
-                    context, 
-                    MaterialPageRoute(
-                      builder: (context){
-                        return Home();
-                      },
+              style: TextStyle(
+                  fontSize: 36.0,
+                  fontFamily: 'Raleway',
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white,
+                  shadows: <Shadow>[
+                    Shadow(
+                      offset: Offset(1.0, 3.0),
+                      blurRadius: 2.0,
+                      color: Color.fromARGB(150, 0, 0, 0),
                     ),
-                  );
-            },
-            child: Text ("Get Started",
-            style: TextStyle(fontSize: 24.0, fontFamily: 'Raleway')),
-            color: Color(0xFFFFBE3F),
-            elevation: 5.0,
+                  ]),
             ),
-            padding: EdgeInsets.only(top:635.0,right:10.0, left: 160),
           ),
-        ] 
+          Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height / 3.1,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: FractionalOffset.topLeft,
+                    child: Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: Text(
+                        'Refuse to wither \nYou can always\ngrow and bloom',
+                        style: TextStyle(
+                            fontSize: 38.0,
+                            fontFamily: 'Raleway',
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: FractionalOffset.bottomRight,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 15, top: 15),
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ),
+                          );
+                        },
+                        child: Text("Get Started",
+                            style: TextStyle(
+                                fontSize: 24.0, fontFamily: 'Raleway')),
+                        color: Color(0xFFFFBE3F),
+                        elevation: 5.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
-    );
-  } 
+    ));
+  }
 }

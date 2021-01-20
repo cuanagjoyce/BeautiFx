@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:beautifx/home.dart';
-import 'package:beautifx/routines/dry/morning.dart';
-import 'package:beautifx/routines/dry/evening.dart';
+import 'package:beautifx/routines/oily/morning.dart';
+import 'package:beautifx/routines/oily/evening.dart';
 
 class Oily extends StatelessWidget{
 
@@ -12,7 +12,7 @@ class Oily extends StatelessWidget{
         children: [
           Container(
             decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/image/bg.png"),
+                image: DecorationImage(image: AssetImage("assets/images/bg.png"),
                 fit: BoxFit.fill)),
           ),
           Container(
@@ -43,7 +43,7 @@ class Oily extends StatelessWidget{
             padding: EdgeInsets.only(bottom:500.0,right:25.0, left: 5.0, top: 35.0),
             ),
           Container(
-                child: Image.asset('assets/image/img1.png',
+                child: Image.asset('assets/images/img1.png',
                 width: 99,
                 height: 74,
                 ),
@@ -94,7 +94,7 @@ class Oily extends StatelessWidget{
                     ),
                    ),
          Container(
-                child: Image.asset('assets/image/icon1.png',
+                child: Image.asset('assets/images/icon1.png',
                 width: 20,
                 height: 20,
                 ),
@@ -199,7 +199,7 @@ class Oily extends StatelessWidget{
                    ),
                   ),
                 Container(
-                child: Image.asset('assets/image/icon2.png',
+                child: Image.asset('assets/images/icon2.png',
                 width: 18,
                 height: 18,
                 ),
@@ -213,7 +213,7 @@ class Oily extends StatelessWidget{
                     width: 294,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(image: AssetImage("assets/image/morning.png"), fit: BoxFit.cover),
+                      image: DecorationImage(image: AssetImage("assets/images/morning.png"), fit: BoxFit.cover),
                     ),
                   ),
                   ),
@@ -225,7 +225,7 @@ class Oily extends StatelessWidget{
                     width: 294,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(image: AssetImage("assets/image/evening.jpg"), fit: BoxFit.cover),
+                      image: DecorationImage(image: AssetImage("assets/images/evening.jpg"), fit: BoxFit.cover),
                     ),
                   ),
                   ),

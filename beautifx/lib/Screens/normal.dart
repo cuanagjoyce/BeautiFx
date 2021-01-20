@@ -12,8 +12,8 @@ class Normal extends StatelessWidget{
         children: [
           Container(
             decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/image/bg.png"),
-                fit: BoxFit.fill)),
+                image: DecorationImage(image: AssetImage("assets/images/bg.png"),
+                fit: BoxFit.cover)),
           ),
           Container(
             margin: EdgeInsets.all(6.0),
@@ -43,7 +43,7 @@ class Normal extends StatelessWidget{
             padding: EdgeInsets.only(bottom:500.0,right:25.0, left: 5.0, top: 35.0),
             ),
           Container(
-                child: Image.asset('assets/image/img1.png',
+                child: Image.asset('assets/images/img1.png',
                 width: 99,
                 height: 74,
                 ),
@@ -94,7 +94,7 @@ class Normal extends StatelessWidget{
                     ),
                    ),
          Container(
-                child: Image.asset('assets/image/icon1.png',
+                child: Image.asset('assets/images/icon1.png',
                 width: 20,
                 height: 20,
                 ),
@@ -199,7 +199,7 @@ class Normal extends StatelessWidget{
                    ),
                   ),
                 Container(
-                child: Image.asset('assets/image/icon2.png',
+                child: Image.asset('assets/images/icon2.png',
                 width: 18,
                 height: 18,
                 ),
@@ -213,7 +213,7 @@ class Normal extends StatelessWidget{
                     width: 294,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(image: AssetImage("assets/image/morning.png"), fit: BoxFit.cover),
+                      image: DecorationImage(image: AssetImage("assets/images/morning.png"), fit: BoxFit.cover),
                     ),
                   ),
                   ),
@@ -225,7 +225,7 @@ class Normal extends StatelessWidget{
                     width: 294,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(image: AssetImage("assets/image/evening.jpg"), fit: BoxFit.cover),
+                      image: DecorationImage(image: AssetImage("assets/images/evening.jpg"), fit: BoxFit.cover),
                     ),
                   ),
                   ),

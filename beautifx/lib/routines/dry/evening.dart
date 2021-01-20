@@ -1,18 +1,55 @@
-import 'package:beautifx/Screens/normal.dart';
+import 'package:beautifx/Screens/dry.dart';
+import 'package:beautifx/jsonmodels/categories.dart';
+import 'package:beautifx/jsonmodels/products.dart';
+import 'package:beautifx/services/categoryService.dart';
+import 'package:beautifx/services/productService.dart';
 import 'package:flutter/material.dart';
 
-class Evening extends StatelessWidget{
+class Evening extends StatefulWidget {
+  @override
+  _EveningState createState() => _EveningState();
+}
 
-@override
-   Widget build(BuildContext context){
+class _EveningState extends State<Evening> {
+
+  Future<Categories> _categoryFuture;
+  Future<Products> _productFuture;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _categoryFuture = getCategories();
+    _productFuture = getProducts();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-        decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("assets/image/bg1.png"),
+        child: Stack(
+          children: [
+             Container(
+                decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage("assets/images/bg1.png"),
                 fit: BoxFit.fill)
-                ), 
-        child: SingleChildScrollView(
+                ),
+              ),
+             Container(
+                child: Image.asset('assets/images/icon3.png',
+                width: 130,
+                height: 130,
+                ),
+                 padding: EdgeInsets.only(top:150,left: 230),
+              ),
+              Container(
+                child: Image.asset('assets/images/icon4.png',
+                width: 200,
+                height: 200,
+                ),
+                 padding: EdgeInsets.only(right: 100,top: 520 ),
+              ),
+              SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Stack(
         children: [
@@ -59,7 +96,7 @@ class Evening extends StatelessWidget{
                       ),
                     ),
                 Container(
-                  child: Image.asset('assets/image/arr.png',
+                  child: Image.asset('assets/images/arr.png',
                   width: 20,
                   height: 20,
                 ),
@@ -72,12 +109,7 @@ class Evening extends StatelessWidget{
                     padding: EdgeInsets.only(top:20),
                     child: FlatButton(
                       onPressed: (){
-                          Navigator.push(context,MaterialPageRoute
-                          (builder:(context){
-                              return Normal();
-                            },
-                          ),
-                        );
+                          Navigator.pop(context);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -91,20 +123,6 @@ class Evening extends StatelessWidget{
                     ),
                    ]
                   ),
-              Container(
-                child: Image.asset('assets/image/icon3.png',
-                width: 130,
-                height: 130,
-                ),
-                 padding: EdgeInsets.only(top:180,left: 230),
-                ),
-               Container(
-                child: Image.asset('assets/image/icon4.png',
-                width: 200,
-                height: 200,
-                ),
-                 padding: EdgeInsets.only(right: 100,top: 560 ),
-                ),
               Column(children: [
                   Container(child: 
                     Center(child: 
@@ -144,7 +162,14 @@ class Evening extends StatelessWidget{
                           child: Padding(
                             padding: EdgeInsets.only(left: 3),
                               child: Container(
-                                  child: RichText(
+                                  child: FutureBuilder<Categories>(
+                            future: _categoryFuture,
+                            builder: (context,snapshot){
+                              if(snapshot.hasError){
+                                return Text('Cant load skins');
+                              }else if(snapshot.hasData){
+                                var temp = snapshot.data.categories;
+                                return RichText(
                                     text: TextSpan(
                                       text: 'Step1: ',
                                       style: TextStyle(
@@ -153,10 +178,14 @@ class Evening extends StatelessWidget{
                                         fontSize: 12
                                       ),
                                       children: [
-                                        TextSpan(text:'Cleanser',style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
-                                        ],
-                                        ),
-                                      ),
+                                        TextSpan(text:temp[0]['category_name'],style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
+                                      ],
+                                    ),
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
                                       ),
                                     ),
                               color: Colors.white,
@@ -189,22 +218,42 @@ class Evening extends StatelessWidget{
                                     ),
                                   ),
                                 ),
-                          Container( 
-                              child: Center(child: 
-                                Padding(
-                                padding: EdgeInsets.only(top:1,right: 30),
-                                  child: Container(
-                                      child: Text(
-                                          'Celeteque Hydration Facial Wash\nCOSRX Low pH Good Morning Gel Cleanser\nCetaphil Gentle Skin Cleanser\nHappy Skin Hydrating Facial Wash\nFRESH Soy Face Cleanser\nHuman Nature Balancing Facial Wash\nKiehls Ultra Facial Cleanser\nMario Badescu Glycolic Foaming Cleanser\nClinique Mild Liquid Facial Soap\nIn Her Element Low pH Rose Gel Cleanser',
-                                          style: TextStyle(
-                                            color: Colors.black, 
-                                            fontSize: 10,
-                                            ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: 150,
+                              width: 250,
+                              child: FutureBuilder<Products>(
+                                future: _productFuture,
+                                builder: (context,snapshot){
+                                  if(snapshot.hasError){
+                                    return Text('Cant load skins');
+                                  }else if(snapshot.hasData){
+                                    var temp = snapshot.data.products;
+                                    return ListView(
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.only(left:15, top:5),
+                                      children: [
+                                       Column(
+                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                         crossAxisAlignment: CrossAxisAlignment.start,
+                                         children: [
+                                           Text(temp[0]['product_name'],style: TextStyle(fontSize: 12,),),
+                                           Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                           Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                           Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                           Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                           Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                       ],)
+                                      ],
+                                    );
+                                  }
+                                  return CircularProgressIndicator();
+                                },
+                              ),
+                            ),
+                          ),
                         Container(child: 
                               Center(child: 
                                 Padding(
@@ -216,19 +265,30 @@ class Evening extends StatelessWidget{
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 3),
                                     child: Container(
-                                        child: RichText(
-                                          text: TextSpan(
-                                            text: 'Step2: ',
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12
-                                            ),
-                                            children: [
-                                              TextSpan(text:'Toner',style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
-                                              ],
-                                              ),
-                                            ),
+                                        child: FutureBuilder<Categories>(
+                            future: _categoryFuture,
+                            builder: (context,snapshot){
+                              if(snapshot.hasError){
+                                return Text('Cant load skins');
+                              }else if(snapshot.hasData){
+                                var temp = snapshot.data.categories;
+                                return RichText(
+                                    text: TextSpan(
+                                      text: 'Step2: ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12
+                                      ),
+                                      children: [
+                                        TextSpan(text:temp[1]['category_name'],style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
+                                      ],
+                                    ),
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
                                             ),
                                           ),
                                     color: Colors.white,
@@ -261,22 +321,42 @@ class Evening extends StatelessWidget{
                                             ),
                                           ),
                                         ),
-                                  Container( 
-                                      child: Center(child: 
-                                        Padding(
-                                        padding: EdgeInsets.only(top:1,right: 30),
-                                          child: Container(
-                                              child: Text(
-                                                  'Celeteque Hydration Facial Wash\nCOSRX Low pH Good Morning Gel Cleanser\nCetaphil Gentle Skin Cleanser\nHappy Skin Hydrating Facial Wash\nFRESH Soy Face Cleanser\nHuman Nature Balancing Facial Wash\nKiehls Ultra Facial Cleanser\nMario Badescu Glycolic Foaming Cleanser\nClinique Mild Liquid Facial Soap\nIn Her Element Low pH Rose Gel Cleanser',
-                                                  style: TextStyle(
-                                                    color: Colors.black, 
-                                                    fontSize: 10,
-                                                    ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 150,
+                                        width: 250,
+                                          child: FutureBuilder<Products>(
+                                            future: _productFuture,
+                                            builder: (context,snapshot){
+                                              if(snapshot.hasError){
+                                                return Text('Cant load skins');
+                                              }else if(snapshot.hasData){
+                                                var temp = snapshot.data.products;
+                                                return ListView(
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.only(left:15, top:5),
+                                                  children: [
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12,),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                  ],)
+                                                  ],
+                                                );
+                                              }
+                                              return CircularProgressIndicator();
+                                            },
+                                          ),
+                                        ),
+                                      ),
                             Container(child: 
                                 Center(child: 
                                   Padding(
@@ -288,19 +368,30 @@ class Evening extends StatelessWidget{
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 3),
                                       child: Container(
-                                          child: RichText(
-                                            text: TextSpan(
-                                              text: 'Step3: ',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12
-                                              ),
-                                              children: [
-                                                TextSpan(text:'Serum',style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
-                                                ],
-                                                ),
-                                              ),
+                                          child:FutureBuilder<Categories>(
+                            future: _categoryFuture,
+                            builder: (context,snapshot){
+                              if(snapshot.hasError){
+                                return Text('Cant load skins');
+                              }else if(snapshot.hasData){
+                                var temp = snapshot.data.categories;
+                                return RichText(
+                                    text: TextSpan(
+                                      text: 'Step3: ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12
+                                      ),
+                                      children: [
+                                        TextSpan(text:temp[2]['category_name'],style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
+                                      ],
+                                    ),
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
                                               ),
                                             ),
                                       color: Colors.white,
@@ -333,22 +424,42 @@ class Evening extends StatelessWidget{
                                             ),
                                           ),
                                         ),
-                                  Container( 
-                                      child: Center(child: 
-                                        Padding(
-                                        padding: EdgeInsets.only(top:1,right: 30),
-                                          child: Container(
-                                              child: Text(
-                                                  'Celeteque Hydration Facial Wash\nCOSRX Low pH Good Morning Gel Cleanser\nCetaphil Gentle Skin Cleanser\nHappy Skin Hydrating Facial Wash\nFRESH Soy Face Cleanser\nHuman Nature Balancing Facial Wash\nKiehls Ultra Facial Cleanser\nMario Badescu Glycolic Foaming Cleanser\nClinique Mild Liquid Facial Soap\nIn Her Element Low pH Rose Gel Cleanser',
-                                                  style: TextStyle(
-                                                    color: Colors.black, 
-                                                    fontSize: 10,
-                                                    ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
+                                                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 150,
+                                        width: 250,
+                                          child: FutureBuilder<Products>(
+                                            future: _productFuture,
+                                            builder: (context,snapshot){
+                                              if(snapshot.hasError){
+                                                return Text('Cant load skins');
+                                              }else if(snapshot.hasData){
+                                                var temp = snapshot.data.products;
+                                                return ListView(
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.only(left:15, top:5),
+                                                  children: [
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12,),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                  ],)
+                                                  ],
+                                                );
+                                              }
+                                              return CircularProgressIndicator();
+                                            },
+                                          ),
+                                        ),
+                                      ),
                                 Container(child: 
                                     Center(child: 
                                       Padding(
@@ -360,19 +471,30 @@ class Evening extends StatelessWidget{
                                       child: Padding(
                                         padding: EdgeInsets.only(left: 3),
                                           child: Container(
-                                              child: RichText(
-                                                text: TextSpan(
-                                                  text: 'Step4: ',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 12
-                                                  ),
-                                                  children: [
-                                                    TextSpan(text:'Moisturizer',style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
-                                                    ],
-                                                    ),
-                                                  ),
+                                              child: FutureBuilder<Categories>(
+                            future: _categoryFuture,
+                            builder: (context,snapshot){
+                              if(snapshot.hasError){
+                                return Text('Cant load skins');
+                              }else if(snapshot.hasData){
+                                var temp = snapshot.data.categories;
+                                return RichText(
+                                    text: TextSpan(
+                                      text: 'Step4: ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12
+                                      ),
+                                      children: [
+                                        TextSpan(text:temp[3]['category_name'],style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
+                                      ],
+                                    ),
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
                                                   ),
                                                 ),
                                           color: Colors.white,
@@ -405,22 +527,42 @@ class Evening extends StatelessWidget{
                                             ),
                                           ),
                                         ),
-                                  Container( 
-                                      child: Center(child: 
-                                        Padding(
-                                        padding: EdgeInsets.only(top:1,right: 30),
-                                          child: Container(
-                                              child: Text(
-                                                  'Celeteque Hydration Facial Wash\nCOSRX Low pH Good Morning Gel Cleanser\nCetaphil Gentle Skin Cleanser\nHappy Skin Hydrating Facial Wash\nFRESH Soy Face Cleanser\nHuman Nature Balancing Facial Wash\nKiehls Ultra Facial Cleanser\nMario Badescu Glycolic Foaming Cleanser\nClinique Mild Liquid Facial Soap\nIn Her Element Low pH Rose Gel Cleanser',
-                                                  style: TextStyle(
-                                                    color: Colors.black, 
-                                                    fontSize: 10,
-                                                    ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 150,
+                                        width: 250,
+                                          child: FutureBuilder<Products>(
+                                            future: _productFuture,
+                                            builder: (context,snapshot){
+                                              if(snapshot.hasError){
+                                                return Text('Cant load skins');
+                                              }else if(snapshot.hasData){
+                                                var temp = snapshot.data.products;
+                                                return ListView(
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.only(left:15, top:5),
+                                                  children: [
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12,),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                  ],)
+                                                  ],
+                                                );
+                                              }
+                                              return CircularProgressIndicator();
+                                            },
+                                          ),
+                                        ),
+                                      ),
                                     Container(child: 
                                       Center(child: 
                                         Padding(
@@ -432,19 +574,30 @@ class Evening extends StatelessWidget{
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 3),
                                             child: Container(
-                                                child: RichText(
-                                                  text: TextSpan(
-                                                    text: 'Step5: ',
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 12
-                                                    ),
-                                                    children: [
-                                                      TextSpan(text:'Sunscreen',style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
-                                                      ],
-                                                      ),
-                                                    ),
+                                                child: FutureBuilder<Categories>(
+                            future: _categoryFuture,
+                            builder: (context,snapshot){
+                              if(snapshot.hasError){
+                                return Text('Cant load skins');
+                              }else if(snapshot.hasData){
+                                var temp = snapshot.data.categories;
+                                return RichText(
+                                    text: TextSpan(
+                                      text: 'Step5: ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12
+                                      ),
+                                      children: [
+                                        TextSpan(text:temp[4]['category_name'],style: TextStyle(color: Colors.orange[300],fontWeight: FontWeight.w900)),
+                                      ],
+                                    ),
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
                                                     ),
                                                   ),
                                             color: Colors.white,
@@ -477,31 +630,51 @@ class Evening extends StatelessWidget{
                                             ),
                                           ),
                                         ),
-                                  Container( 
-                                      child: Center(child: 
-                                        Padding(
-                                        padding: EdgeInsets.only(top:1,right: 30),
-                                          child: Container(
-                                              child: Text(
-                                                  'Celeteque Hydration Facial Wash\nCOSRX Low pH Good Morning Gel Cleanser\nCetaphil Gentle Skin Cleanser\nHappy Skin Hydrating Facial Wash\nFRESH Soy Face Cleanser\nHuman Nature Balancing Facial Wash\nKiehls Ultra Facial Cleanser\nMario Badescu Glycolic Foaming Cleanser\nClinique Mild Liquid Facial Soap\nIn Her Element Low pH Rose Gel Cleanser',
-                                                  style: TextStyle(
-                                                    color: Colors.black, 
-                                                    fontSize: 10,
-                                                    ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              padding: EdgeInsets.only(bottom: 10),
-                                            ),
+                                                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Container(
+                                        height: 150,
+                                        width: 250,
+                                          child: FutureBuilder<Products>(
+                                            future: _productFuture,
+                                            builder: (context,snapshot){
+                                              if(snapshot.hasError){
+                                                return Text('Cant load skins');
+                                              }else if(snapshot.hasData){
+                                                var temp = snapshot.data.products;
+                                                return ListView(
+                                                  physics: const NeverScrollableScrollPhysics(),
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.only(left:15, top:5),
+                                                  children: [
+                                                  Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12,),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[0]['product_name'],style: TextStyle(fontSize: 12),),
+                                                      Text(temp[1]['product_name'],style: TextStyle(fontSize: 12),),
+                                                  ],)
+                                                  ],
+                                                );
+                                              }
+                                              return CircularProgressIndicator();
+                                            },
+                                          ),
+                                        ),
+                                      ),
                                             
                 ]
              ),
            ],
          ),
         ),
-      )
+          ],
+        ),
     ),
     );
-   }
+  }
 }
